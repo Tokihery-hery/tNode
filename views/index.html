@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat node js</title>
+    <style>
+        .chat_discute {
+            position: relative;
+            margin: auto;
+            height: 1000px;
+            max-width: 100%;
+            background: #3effdd;
+            overflow: scroll;
+            display: block;
+        }
+
+        h1 {
+
+            position: absolute;
+            top: auto;
+            background: #ffffff;
+            border-radius: 23px;
+            margin-top: 12px;
+            padding: 7px;
+            margin-bottom: 12px;
+            margin-left: 12px;
+        }
+
+        p {
+            text-align: center;
+            margin: auto;
+
+        }
+    </style>
+    <script src="/socket.io-client/dist/socket.io.js"></script>
+    <script>
+        let socket = io("http://localhost:3000")
+
+
+
+        let sender = () => {
+            let message = document.getElementById("name").value
+            message.length === 0 ? message = "no messgae" : message = message
+            let chat = document.querySelector("chat")
+            let span = document.createElement("h1")
+            span.innerText = message
+            chat.appendChild(span)
+            let chat_discute = document.getElementsByClassName("chat_discute")
+            let childrenCount = chat.childElementCount
+            chat.children[0].style["bottom"] = "24px"
+            if (childrenCount > 0) {
+                for (let i = 1; i < childrenCount; i++) {
+                    let widthChat_discute = chat_discute[0].clientHeight
+                    let byTop = chat.children[i - 1].offsetTop
+                    console.log(byTop);
+                    chat.children[i].style["bottom"] = widthChat_discute - byTop + "px"
+                }
+            } else {
+
+            }
+
+
+            socket.emit("new_user", message)
+        }
+
+        ////////##############################3
+        let inverseSender = ()=>{
+            let message = document.getElementById("name").value
+            message.length === 0 ? message = "no messgae" : message = message
+            let chat = document.querySelector("chat")
+            let span = document.createElement("h1")
+            span.innerText = message
+            chat.appendChild(span)
+            let chat_discute = document.getElementsByClassName("chat_discute")
+            let childrenCount = chat.childElementCount
+            chat.children[childrenCount-1].style["bottom"] = "24px"
+            if(childrenCount>0){
+                for (let i = childrenCount; i >0; i--) {
+                    // let widthChat_discute = chat_discute[0].clientHeight
+                    let byTop = chat.children[i- 1].offsetTop
+                    console.log(byTop);
+                    
+                    chat.children[i-1].style["bottom"] = 1000 -byTop + "px"
+                    
+                }
+            }
+        }
+        /////########################################
+
+        let el = (type, props, ...children) => {
+            let dom = document.createElement(type);
+
+            if (props) Object.assign(dom, props);
+            for (let child of children) {
+                if (typeof child != "string") dom.appendChild(child);
+                else dom.appendChild(document.createTextNode(child));
+            }
+            return dom;
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <chat class="chat_discute">
+
+        </chat>
+        <h1>Inscription de chat_piso {{name}}
+        </h1>
+        <form action="server.js?name={{name}}" method="post">
+            <textarea name="name" id="name" cols="30" placeholder="name here" rows="10"></textarea><br><br>
+            <input type="text" name="lastname" id="lastname"><br>
+            <input type="button" onclick="sender()" id="namel" value="Envoyer">
+            <script>
+                document.body.appendChild(el("button", {
+                    onclick: () => inverseSender()
+                }, "The button"));
+                document.body.appendChild(el("input", "The button"));
+
+            </script>
+        </form>
+        <a href="#/hello">hello</a>
+        <a href="#/hello2">hello2</a>
+        <a href="#/hello3">hello3</a>
+        <a href="#/hello3">hello4</a>
+        <h1 class="message"></h1>
+        <h1 class="message"></h1>
+    </div>
+    <div class="chat">
+        helolll
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit: 
+        <% if(locals.findOne) {%>
+        <%= findOne.nom %>
+        <% }%>
+    </title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <div class="container_edit">
+        <div class="hello_edit">
+            <div class="input_error">
+                <% if(locals.error) {%>
+                <h1><%= error %></h1>
+                <% }%>
+            </div>
+            <div class="page_input">
+                <% if(locals.findOne) {%>
+                <div class="form">
+                    <form action="/updateOne/<%= findOne._id %>" method="post">
+                        <input type="text" name="nom" value="<%= findOne.nom %>" id="nom">
+                        <input type="text" name="prenom" id="prenom" value="<%= findOne.prenom %>">
+                        <hr>
+                        <input type="submit" class="btn btn-success" value="Enregistrer">
+                    </form>
+                </div>
+                <% }%>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Rest API CRUD nodejs and mysql</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/restApi.css">
+    <script src="/assets/js/jquery-3.4.-1.js"></script>
+    <style>
+
+
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+
+        <div class="col-md-6 jumbotron fixe-width">
+            <div class="search_bar">
+                <input type="search" name="search" class="form-control" placeholder="Ajouter une mot nom ou id"
+                    id="obj_search">
+                <a class="btn btn-search" href="/" id="search" onclick="getValue()">Karoky</a>
+            </div>
+            <div class="error_search">
+
+                <% if(locals.error_search){%>
+                <h1><%= error_search %></h1>
+                <br>
+                <hr>
+                <h1 class="suggestion"> Veullez voir au tableau suivant tous les listes</h1>
+                <%} %>
+
+            </div>
+            <div class="result_search">
+                <% if(locals.data_search){%>
+                <table class="table">
+                    <thead>
+                        <!-- <th>id</th>
+                            <th>Name</th>
+                            <th>Lastname</th>
+                            <th>mail</th>
+                            <th>Action</th> -->
+                    </thead>
+
+                    <tbody>
+
+
+                        <% for(users of data_search){ %>
+
+                        <tr>
+
+                            <td><a href="/crudmysql/profil/<%= users.id %>" class="<id_%= users.id %>"><%= users.id %></a></td>
+                            <td><a href="/crudmysql/profil/<%= users.id %>" class="name_<%= users.id %>"><%= users.name %></a>
+                            </td>
+                            <td><a href="/crudmysql/profil/<%= users.id %>"
+                                    class="lastname_<%= users.id %>"><%= users.lastname %></a></td>
+                            <td><a href="/crudmysql/profil/<%= users.id %>" class="mail_<%= users.id %>"><%= users.mail %></a>
+                            </td>
+
+                            <td>
+                            <td>
+                                <button id="<%= users.id %>" value="<%= users.id %>"
+                                    class="btn edit_<%= users.id %> edit btn-success">Edit be an</button>
+
+                            </td>
+
+                            <td><button id='delete_<%= users.id %>'
+                                    class="btn btn-danger delete  delete_<%= users.id %>">Delete be an</button></td>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="timers">
+                                <h1 class="timer" id="<%= users.id %>"><%= users.date.fromNow() %></h1>
+                            </td>
+                        </tr>
+                        <%}%>
+                       
+                        </tbody> 
+                    
+                    </table>
+                <hr>
+                <%} %>
+            </div>
+            <span class="success">
+                <% if(locals.success_edit){%>
+                <h1><%= success_edit %></h1>
+                <%} %>
+            </span>
+            <span class="success">
+                <% if(locals.len ){ if(len===1){%>
+                <h1>il y a <%= len %> resulat</h1>
+                <%}else{ %>
+                <h1>il y a <%= len %> resulats</h1>
+                <%}} %>
+            </span>
+            <span class="alert">Ity no novana na nampidirina farany</span>
+            <div class="modif_post" id="modif_post">
+                <table class="table">
+                    <thead>
+                        <!-- <th>id</th>
+                    <th>Name</th>
+                    <th>Lastname</th>
+                    <th>mail</th>
+                    <th>Action</th> -->
+                    </thead>
+
+                    <tbody>
+
+
+                        <% if(locals.users_data) for(users of users_data){{ %>
+                        <tr id="<%= users.id %>">
+
+                            <td><a href="/crudmysql/profil/<%= users.id %>" class="<id_%= users.id %>"><%= users.id %></a></td>
+                            <td><a href="/crudmysql/profil/<%= users.id %>" class="name_<%= users.id %>"><%= users.name %></a>
+                            </td>
+                            <td><a href="/crudmysql/profil/<%= users.id %>"
+                                    class="lastname_<%= users.id %>"><%= users.lastname %></a></td>
+                            <td><a href="/crudmysql/profil/<%= users.id %>" class="mail_<%= users.id %>"><%= users.mail %></a>
+                            </td>
+
+                            <td>
+                            <td>
+                                <button id="id_<%= users.id %>" value="<%= users.id %>"
+                                    class="btn edit_<%= users.id %> edit btn-success" onclick="edit('<%= users.id %>')">Edit eny hoa</button>
+
+                            </td>
+
+                            <td><a  href="/crudmysql/delete/<%= users.id %>" id="delete_<%= users.id %>"
+                                    class="btn btn-danger delete delete_<%= users.id %>">Delete</a></td>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="timers">
+                                <h1 class="timer" id="<%= users.id %>"><%= users.date.fromNow() %></h1>
+                            </td>
+                        </tr>
+                        <%}}%>
+                   
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+        <form id="formgot" action="">
+            <input type="hidden" name="name" id="_name" value="">
+            <input type="hidden" name="lastname" id="_lastname" value="">
+            <input type="hidden" name="mail" id="_mail" value="">
+        </form>
+        <div class="col-md-6">
+            <div class="card a">
+                <div class="rows">
+                    <legend>Enregistrement d'Information</legend>
+                </div>
+                <div class="diviser">
+                    <hr>
+                </div>
+                <div class="rows">
+                    <form id="ajax_form" action="/crudmysql/list" method="POST">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" class="form-control" id="name">
+                        <label for="lastname">Lastname:</label>
+                        <input type="text" name="lastname" class="form-control" id="lastname">
+                        <label for="mail">Your adress mail:</label>
+                        <input type="mail" name="mail" id="mail" class="form-control">
+                        <hr>
+                        <input type="submit" class="btn btn-success" value="Enregistrer">
+                        <span class="success">
+                            <% if(locals.success){%>
+                            <h1><%= success %></h1>
+                            <%} %>
+                        </span>
+                        <span class="error">
+                            <% if(locals.error){%>
+                            <h1><%= error %></h1>
+                            <%} %>
+                        </span>
+                    </form>
+                    <!-- <button class="btn btn-success" id="ajax">ajax fetch data</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/magic.js"></script>
+
+</body>
+
+</html>

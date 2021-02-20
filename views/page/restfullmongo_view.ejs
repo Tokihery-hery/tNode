@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>REST FULL API MONGO crud</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<style>
+    .date {
+        color: cadetblue;
+        font-size: xx-small;
+    }
+</style>
+
+<body>
+    <div class="container">
+
+        <div class="hello">
+            <div>
+                <% if(locals.error){   %>
+                <h1> <%= error %></h1>
+                <%  } %>
+                <% if(!locals.data_res){%>
+                <a href="/findAll" class="btn btn-plus">Voir tous listes</a>
+                <% }%>
+
+                <% if(locals.data){   %>
+
+                <h1> <%=   data %> </h1>
+                <% }%>
+            </div>
+
+            <%    if(locals.data_res) {%>
+            <form action="/search" method="post">
+                <input type="search" name="search" placeholder="Rechecher un  mot cle" id="search">
+                <input type="submit" class="btn btn-search" value="Search">
+
+            </form>
+            <% }%>
+            <div>
+                <% if(locals.save_ok){   %>
+                <h1 class="save_ok""> <%= save_ok %></h1>
+            <%  } %>
+            <% if(locals.delete_ok){   %>
+                <h1 class=" delete_ok""> <%= delete_ok %></h1>
+                <%  } %>
+            </div>
+            
+           
+            <div class=" count">
+                 <%  if(locals.search){ %>
+
+
+                <% if(locals.count){   %>
+                <h1> il y a <span class="counter"><%= count %></span>
+                    <% count===1 ? r="found": r="founds"} %>
+                    <% search ==="ok" ? res=r: res="users" %>
+
+                    <%= res %> </h1>
+                <% }%>
+
+            </div>
+
+            <table class="listofuser">
+                <% if(locals.data_res && locals.date){   %>
+                <thead>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                </thead>
+
+                <tbody>
+
+                    <% for(data of data_res){ %>
+                    <tr>
+                        <td> <%=   data.nom %>
+                        </td>
+                        <td> <%=   data.prenom %> </td>
+                        <td>
+                        <td>
+                            <a href="/editOne/<%= data._id %>" class="btn btn-edit">Edit</a>
+                        </td>
+                        <td>
+                            <a href="/deleteOne/<%= data._id %>" class="btn btn-delete">Delete</a>
+                        </td>
+
+                        </td>
+                    </tr>
+                    <tr class="time">
+                        <td class="date"><%=   date(data.create_date) %></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <%  } %>
+                </tbody>
+                <% }%>
+            </table>
+        
+            <div class="control">
+                <%  if(locals.search){ %>
+                <% if(search ==="ok"){ %>
+                <a href="/findAll" class="btn btn-plus">Voir tous listes</a>
+                <%  }} %>
+            </div>
+
+
+
+
+        </div>
+        <div class="page_input">
+            <h1>Interface d'enregistrement</h1>
+            <div class="form">
+                <form action="/enregistre" method="post">
+                    <input type="text" name="nom" id="nom"><br>
+                    <input type="text" name="prenom" id="prenom"><br>
+                    <input type="submit" class="btn btn-success" value="Enregistrer">
+                </form>
+            </div>
+            <div>
+                <span class="input_error">
+                    <% if(locals.input_error) {%>
+                    <h1><%= input_error %></h1>
+                    <%  } %>
+                </span>
+                <span class="input_success">
+                    <% if(locals.input_success) {%>
+                    <h1><%= input_success %></h1>
+                    <%  } %>
+                </span>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

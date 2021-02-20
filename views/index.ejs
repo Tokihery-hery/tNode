@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Parsing json</title>
+</head>
+
+<body>
+
+<% if(locals.nombreFokoAll && locals.nombremoyenFoko){ %> <!-- mandray an lay averagefoko -->
+        
+    <p>Nombre du commune à Mada: <%= nombreCommune %>  <!-- miaffiche azy --></p> 
+    <p>Nombre du fokontany à Mada: <%= nombreFokoAll %>  <!-- miaffiche azy --></p> 
+    <p>Nombre moyen du fokontany à Mada: <%= nombremoyenFoko %>  <!-- miaffiche azy --></p> 
+          <%}%>
+  <% if(locals.data){ %> <!-- mandray an lay datanet nalefa avy any aminy parserjson.js -->
+     
+  <table border="1">
+      <thead>
+          <th>Commune</th>
+          <th>Fonkotany</th>
+          <th>
+              <tr>
+                  <th>Anarana</th>
+                  <th>N°</th>
+                  <th>Anarana</th>
+              </tr>
+
+          </th>
+
+      </thead>
+      <tbody>
+          <%  for(databrute of data) {  %>
+          <tr>
+              <td><%= databrute.name %></td><!-- miaffiche commune  -->
+              <td></td><!-- miaffiche commune  -->
+              <td style="color: blue;">Isa ny fokontany ao <%= databrute.nombreFoko %></td><!-- miaffiche ny isa fokontany par commune  -->
+              <%  for(foko of databrute.fokontany) {  %>
+          </tr>
+          <tr>
+              <td>
+              <td><%= foko._id %></td><!-- miaffiche _id fokontany  -->
+              <td class="left"><%= foko.name %></td> <!-- miaffiche anarana ilay fokontany  -->
+              </td>
+          </tr>
+          <%}}%>
+      </tbody>
+  </table>
+  <%}%>
+
+</body>
+
+</html>

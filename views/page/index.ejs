@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/public/bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/assets/SemanticUI/dist/semantic.min.css">
+    <style>
+        .container{
+            margin:50px 400px ;
+        }
+        .ui.message{
+            bottom: 27px;
+        }
+        .ui.button{
+            margin-top: 18px;
+        }
+        span.message_posted{
+            color:rgb(7, 8, 14) !important;
+        }
+        div.pannel{
+            margin-top: 30px;
+            padding: 2px;
+            display: flex;
+        }
+        a{
+            margin-top: 4px;
+        }
+        .head{
+            padding-bottom: 12px;
+        }
+    </style>
+</head>
+<body> 
+    
+     <div class="container">
+           <% if(locals.test) {%>
+        <h1><%= test %></h1>
+        <% }%>
+        <% if(locals.error) {%>
+        <span class="ui negative message"><%= error%></span><br>
+
+        <% }%>
+        <% if(locals.success) {%>
+            <span class="ui positive message"><%= success%> <% if(locals.ob_posted) {%>
+                <span class="message_posted"><%= ob_posted %></span>
+                <% }%></span><br>
+            
+            <% }%>
+        <form action="/item" method="post" class="ui form ">
+            <div class="field">
+                <label for="message">Message</label>
+                <textarea name="message" id="message_id" cols="30" rows="10">hello</textarea><br>
+                <input type="text" name="user">
+                <input type="submit" value="Envoyer" class="ui blue labelled submit icon button">
+            </div>
+            
+     
+        
+        <%  if(locals.messages){%>
+            <div class="head">
+                <span>Your have is :<%= messages.length %> messages</span>
+            </div>
+            
+            <% for (message of messages)  {
+            %>
+            <div class="pannel">
+                <a href="/message/<%= message.id %>">
+                <span class="ui positive message  message_posted"><%= message.message %></span></a>
+            </div>
+            
+        <% }}%>
+
+        <%  if(locals.ob_posted_all){%>
+           
+            <span class=" message_posted"><%= ob_posted_all %></span>
+        <% }%>   
+    </form>
+     </div>
+
+   
+    
+
+</body>
+</html>
+

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>angular first application</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+</head>
+
+
+<body>
+
+    <div ng-app="myApp">
+        <input type="text " ng-model="query">
+        {{query}}
+        <div ng-controller="MyController">
+            <h1 ng-bind="name"></h1>
+
+        </div>
+        <div ng-controller="ctrl">
+            <h1 ng-bind="prenom"></h1>
+        </div>
+        <helloword class="btn btn-success" user="Tokihery"></helloword>
+        <br><br><br><br>
+        <jumbotron class="jumbotron " user="Diamondra"></jumbotron><br><b><br><br><br><br><br></b>
+        <customer></customer>
+
+    </div>
+    <h1>HELLO</h1>
+
+    <script src="assets/angular-1.8.0/angular.js"></script>
+    <script>
+        // module
+        let app = angular.module("myApp", [])
+        app.controller("MyController", function ($scope) {
+            $scope.name = "<%=data%>"
+        })
+        app.controller("ctrl", function ($scope) {
+            $scope.prenom = "cbe owa aaaaaa va "
+        })
+        app.component("helloword", {
+            template: '<span> {{$ctrl.user}} HELOLO WORD WORDO {{$ctrl.myname}}</span>',
+            bindings: { user: '@' },
+            controller: function () {
+                this.$onInit = function () {
+                    this.myname = "Mioty  " + this.user
+                }
+
+            }
+        })
+        app.component("jumbotron", {
+            template: '<span> {{$ctrl.user}} HELOLO WORD WORDO {{$ctrl.myuser}}</span>',
+            bindings: { user: '@' },
+            controller: function () {
+                this.$onInit = function () {
+                    this.myuser = "Mioty  " + this.user
+                }
+
+            }
+        })
+        app.directive("customer", function () {
+
+            return {
+                restrict : 'E',
+                templateUrl: './templateUrl.html',
+
+                controller: function () {
+                    this.message = "Salut url template"
+
+                },
+                controllerAs: 'salutCtrl',
+                link: function (scope, element, attributes) {
+                    element.on('click', function () {
+                        alert('I am templateUrl')
+                    });
+                }
+            }
+
+        })
+
+    </script>
+</body>
+
+</html>

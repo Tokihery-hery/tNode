@@ -1,0 +1,164 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 23px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #ffffff;
+}
+.container{
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    padding: 34px;
+    align-content: space-around;
+}
+.container_edit{
+    display: flex;
+
+}
+.hello_edit{
+    margin-top: 50px;  
+    margin-left: auto;
+    margin-right: auto;
+    background: rgb(254, 254, 255);
+    color: rgb(3, 8, 12) !important;
+    max-width: 600px;
+    padding: 50px;
+    border:  1px solid #000;;
+    border-radius: 25px;
+    text-align: center;
+}
+.hello{
+    margin-right: 89px;
+    margin-top: 50px;  
+    background: rgb(254, 254, 255);
+    color: rgb(3, 8, 12) !important;
+    max-width: 600px;
+    padding: 50px;
+    border:  1px solid #000;;
+    border-radius: 25px;
+    text-align: center;
+}
+.count{
+    height: max-content;
+    padding: 0 4px;
+    width: 100%;
+    background: rgb(147, 147, 175);
+    border: 1px solid rgb(168, 145, 129);
+    border-radius: 5px; 
+    margin: 0 auto;
+}
+.counter{
+   padding: 0 5px;
+    height: max-content;
+    width: max-content;
+    background: rgb(109, 165, 211);
+    border-radius: 50%;
+    color: #fff;
+}
+table{
+    text-align: justify !important;
+}
+thead{
+    padding: 23px;
+    color: rgb(197, 93, 79);
+    font-size: 45px;
+}
+a{
+    text-decoration: none;
+}
+form{
+    display: block;
+}
+input{
+    height: 34px;
+    border-radius: 3px;
+    width:70%;
+    margin-bottom: 23px;
+}
+.btn{
+    color: #ffffff;
+    font-weight: bold;
+    padding: 5px;
+    height: 34px;
+    border: 1px solid #000;
+    width: max-content;
+    border-radius: 6px;
+}
+.btn-search{
+    width: 20%;
+    background: rgb(109, 165, 211);
+}
+.control{
+    margin-top: 12px;
+    margin-bottom: 6px;
+    text-align: left;
+}
+.btn-success{
+    background: rgb(6, 134, 49);
+}
+.btn-plus{
+    background: rgb(118, 156, 214);
+    color: rgb(3, 8, 12);
+    font-weight: bold;
+    
+}
+.btn-edit{
+    background: rgb(82, 155, 106);
+}
+.btn-delete{
+    background: rgb(197, 93, 79);
+}
+td{
+    padding: 10px;
+    
+}
+.time td{
+    border-bottom: 2px solid rgb(18, 22, 19);
+   
+}
+
+.page_input{
+    margin-top: 50px;
+    width: 400px;
+    background: rgb(109, 165, 211);
+    border-radius: 12px;
+    height: max-content;
+    padding: 23px;
+    text-align: center;
+
+}
+.save_ok{
+    font-size: 18px;
+    color: rgb(18, 231, 89);
+    border: .4px solid rgb(63, 248, 63);
+    background: rgb(208, 238, 215);
+    padding: 4px;
+    border-radius: 5px;
+}
+.delete_ok{
+    font-size: 18px;
+    color: rgb(241, 127, 99);
+    border: .4px solid rgb(236, 21, 21);
+    background: rgb(208, 238, 215);
+    padding: 4px;
+    border-radius: 5px;
+}
+.page_input input{
+    width: 100%;
+    margin-right: 45px;
+}
+.input_error h1{
+    font-size: 18px;
+    border: 1px solid rgb(109, 165, 211);
+    background: rgb(226, 140, 129);
+    padding: 4px;
+    border-radius: 3px;
+}
+.input_success h1{
+    font-size: 18px;
+    border: .4px solid rgb(85, 235, 97);
+    background: rgb(154, 219, 173);
+    padding: 4px;
+}

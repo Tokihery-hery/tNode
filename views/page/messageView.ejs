@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/public/bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/assets/SemanticUI/dist/semantic.min.css">
+
+</head>
+<body>
+ <a href="/"><button class="ui dark labelled  button">Menu principal</button> </a>
+    <div class="jumbotron">
+       <H1 class="ui positive message"> <% if(locals.succes) {%>
+        <%= succes %>
+        <%} %>
+
+    </H1>
+
+                <% if(locals.messages) {%>
+                <% for(message of messages) {%>
+
+                    <h1><%= message.message %></h1><br>
+                    <h1><%= message.date %></h1><br>
+
+                
+                    <a href="/delete/<%= message.id %>"><button class="ui red labelled  button">DELETE</button> </a>
+                    <a href="/edit/<%= message.id %>"><button class="ui gray labelled  button">edit</button> </a>   
+                     <% }}%>
+    </div>
+</body>
+</html>

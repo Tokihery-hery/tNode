@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Video playing</title>
+    <style>
+        .fenetre {
+            display: flex;
+            justify-content: flex-start;
+            max-width: 1050px;
+            flex-wrap: wrap;
+            flex-direction: row;
+            padding: 23px;
+            height: max-content;
+            overflow-wrap: break-word;
+            margin: auto;
+            background-image: url('/assets/images/$DATA.JPG"');
+        }
+        .video {
+            display: flex;
+            width: 300px;
+            height: 200px;
+            margin: 12px;
+            background: inherit;
+            padding: 12px;
+            border-radius: 2px;
+            box-shadow: rgba(0, 0, 0, 0.287) 0 0 3px 1px;
+            transition: all .5s;
+        }
+        video,
+        img {
+            height: inherit;
+            width: inherit;
+        }
+        video:visited {
+            border: 3px solid black;
+        }
+        .video span {
+            position: absolute;
+            vertical-align: middle;
+            z-index: 100;
+            margin: 65px 104px;
+            border-radius: 50%;
+            padding: 5px;
+        }
+        .video span button:hover {
+            box-shadow: blue 0 0 4px 0;
+            transition: all .5s;
+        }
+        .video span button {
+            height: 70px;
+            width: 70px;
+            border-radius: 50%;
+            background: #fff;
+        }
+        button:focus,
+        button:hover {
+            outline: none;
+            box-shadow: black 0 0 3px 0;
+        }
+        .video span button img:hover {
+            opacity: 67%;
+        }
+        .video span button img {
+            height: 50px;
+            width: 50px;
+            margin-left: 2px;
+            border-radius: 50%;
+        }
+        .video span button#pause {
+            display: none;
+        }
+        .width {
+            height: 40px;
+            width: 40px;
+            position: relative;
+            border-radius: 50%;
+            margin-top: -32px;
+            margin-left: -12px;
+            transform: scale(0);
+            transition: all .5s;
+        }
+        .video:hover .width {
+            transition: all .5s;
+        }
+        .width button {
+            box-shadow: black 0 0 3px 0px;
+            padding: 0;
+            align-content: center;
+            border-radius: 50%;
+            height: inherit;
+            width: inherit;
+            cursor: pointer;
+        }
+        .width button:hover {
+            box-shadow: black 0 0 4px 0;
+        }
+        .width button:focus {
+            box-shadow: blue 0 0 4px 0;
+        }
+        .width img {
+            width: inherit;
+            width: inherit;
+            position: relative;
+            margin-top: -2px;
+            margin-left: -2px;
+            border-radius: 50%;
+        }
+        .tilte {
+            height: 45px;
+            background: inherit;
+            max-width: 1084px;
+            margin: auto;
+            padding: 0 5px;
+            text-align: center;
+            box-shadow: rgba(0, 0, 0, 0.287) 0 0 3px 0px;
+            border-radius: 2px;
+        }
+        .plus {
+            height: max-content;
+            width: max-content;
+            padding: 7px;
+            position: absolute;
+            margin-left: -193px;
+            display: flex;
+            border-radius: 3px;
+            background: rgb(8, 8, 8);
+        }
+        .plus span,
+        .plus span button,
+        .plus a {
+            padding: 12px;
+            border-radius: 2% !important;
+        }
+        .plus-plus {
+            padding: 3px;
+            display: flex;
+            flex-direction: column;
+        }
+        .plus-plus::before {
+            content: " ";
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-left: 17px solid rgb(8, 8, 8);
+            z-index: 100;
+            position: absolute;
+            left: 171px;
+            top: 7px;
+        }
+
+        .plus-plus div {
+            margin-top: 3px;
+            padding: 3px !important;
+        }
+
+        .plus-plus button,
+        .plus a {
+            border-radius: 0% !important;
+            padding: 5px;
+            border: none;
+        }
+
+        .plus a {
+            background: rgb(216, 210, 210);
+            text-decoration: none;
+            color: black;
+            font-size: 15px;
+        }
+
+        .plus-plus button:focus,
+        .plus a:focus {
+            transform: scale(1.1);
+            transition: all .5s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tilte">
+        <h1>List video</h1>
+    </div>
+    <div class="fenetre">
+        <%if(locals.videoFile){%>
+        <% for(let video of videoFile){%>
+        <div class="video">
+            <video src="/assets/images/FILE.mp4" enctype="video/mp4" controls></video>
+            <span>
+                <button  class="play-or-pause"> <img src="/assets/images/play.png" alt=""></button>
+            </span>
+            <div class="width">
+                <button> <img src="/assets/images/threepoints.png" alt=""></button>
+            </div>
+            <!-- <video src="<%=video.video%>" enctype="application/mp4"></video> -->
+        </div>
+        <div class="video">
+            <video src="/assets/images/file1.mp4" poster="/assets/images/arrow-d-white.png" enctype="video/mp4" controls></video>
+            <span>
+                <button  class="play-or-pause"> <img src="" alt=""></button>
+            </span>
+            <div class="width">
+                <button> <img src="/assets/images/threepoints.png" alt=""></button>
+            </div>
+            <!-- <video src="<%=video.video%>" enctype="application/mp4"></video> -->
+        </div>
+
+        <%}} %>
+    </div>
+    <div class="plus">
+        <div class="plus-plus">
+            <div>
+                <img src="/assets/images/arrow-d-white.png" alt=""> 
+                <a class="download" href="">
+                    Télecharger ce video
+                </a>
+            </div>
+            <div>
+                <img src="/assets/images/action-white.png" alt=""> 
+                <button class="great" onclick="changeView()">
+                    Lire en Grand ecran
+                </button>
+            </div>
+            <div>
+                <img src="/assets/images/tag-white.png" alt=""> 
+                <button>
+                    Copier lien du video
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- <img src="/assets/images/1024px-React-icon.svg.jpg" alt=""> -->
+
+    <script>
+        let fn =(a)=>{
+            
+        }
+        let video = document.querySelectorAll('video')
+        let interface = document.querySelectorAll('.video')
+        let widthBtn = document.querySelectorAll('.width button')
+        let width = document.querySelectorAll('.width')
+        let dwn = document.querySelector('.download')
+        let plus = document.querySelector('.plus')
+        let miniecran = document.querySelector('.mini')
+        let greatecran = document.querySelector('.great')
+        let j = 0
+
+        for (let i = 0; i < video.length; i++) {
+            let playOrPause = false
+            let greatOrmini = false
+            let btnPlay = interface[i].querySelector('button')
+            interface[i].querySelector('img').setAttribute('src', "/assets/images/play.png")
+            btnPlay.addEventListener('click', () => {
+                playOrPause = !playOrPause
+                if(playOrPause){
+                    video[i].play() 
+                    interface[i].querySelector('img').setAttribute('src', "/assets/images/pause.png")
+                }else{
+                    video[i].pause()
+                    interface[i].querySelector('img').setAttribute('src', "/assets/images/play.png")
+                }
+                btnPlay.style.display = "none"
+                playOrPause ? j = 1 : j = 0
+                greatOrmini = false
+                interface[i].addEventListener('mouseenter', () => {
+                    // greatOrmini = false
+                    btnPlay.style.display = "block"
+                    video[i].style.opacity = "23%"
+                    width[i].style.transform = "scale(0.9)"
+                    j = 0
+                    // alert(widthBtn)
+                    widthBtn[i].addEventListener('click', () => {
+                        greatOrmini = !greatOrmini
+                        plus.style.display = "block"
+                        plus.style.transform = "scale(1)"
+                        widthBtn[i].before(plus)
+                        dwn.setAttribute('href', video[i].getAttribute('src'))
+                        video[i].getAttribute('src')
+                        greatecran.addEventListener('click', () => {
+                            // alert(greatOrmini)
+                            interface[i].setAttribute('encours', 'ok')
+                            if (interface[i].querySelector('.plus') != null) {
+                            if (greatOrmini) {
+                                    interface[i].style.transform = "scale(4.2)"
+                                    interface[i].style.zIndex = "133"
+                                    interface[i].style.position = "fixed"
+                                    interface[i].style.left = "793px"
+                                    interface[i].style.top = "369px"
+                                    interface[i].style.background = "#fff"
+                                    greatecran.innerText = "Lire en minimisé l'ecran"
+                                    
+                            } else {
+                                    width[i].style.transform = "scale(0.9)"
+                                    interface[i].style.transform = "scale(1)"
+                                    interface[i].style.zIndex = "0"
+                                    interface[i].style.position = "inherit"
+                                    interface[i].style.left = "initial"
+                                    interface[i].style.top = "initial"
+                                    interface[i].style.background = "#fff"
+                                    greatecran.innerText = "Lire en Grand l'ecran"
+                                
+                            }
+                           
+                            interface[i].addEventListener('mouseleave', () => {
+
+                            })
+                        }
+                        greatOrmini = !greatOrmini
+
+                        })
+                        // alert('hello')
+                    })
+                })
+                interface[i].addEventListener('mouseleave', () => {
+                    btnPlay.style.display = "none"
+                    video[i].style.opacity = "100%"
+                    width[i].style.transform = "scale(0)"
+                    plus.style.display = "none"
+                    interface[i].removeAttribute('encours')
+                })
+            })
+        }        
+    </script>
+</body>
+
+</html>

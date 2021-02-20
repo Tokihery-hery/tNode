@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CRUD JSON</title>
+</head>
+
+<body>
+    <form action="/top" method="get">
+        <input type="search" name="q"><br>
+        <button type="submit">Search</button>
+    </form>
+    <%if(locals.success) {%>
+        <p style="color:green"> <%=success%></p>
+        <%}%>
+    <%if(locals.resultat) {%>
+    <a href="/">Back</a>
+    <%if(typeof resultat == "string") {%>
+    <p><%=resultat%></p>
+    <%}%>
+    <%if(typeof resultat == "object") {%>
+    <p><%=resultat.length%> fond(s)</p>
+    <%let i=1; for(let user of resultat) {%>
+    <p>--/<b><%=i%></b>/--<%=user.name%> <%=user.email%> <a href="/del/<%=user.name%>">Delete</a> <a
+            href="/edit/<%=user.name%>">Modifier</a></p>
+    <%i++}}}%>
+
+    <h1>crud json</h1>
+    <%if(locals.data) {%>
+    <%let i=1; for(let user of data.users) {%>
+
+    
+    <p>--/<b><%=i%></b>/--<%=user.name%> <%=user.email%> <a href="/del/<%=user.name%>">Delete</a> <a
+            href="/edit/<%=user.name%>">Modifier</a></p>
+    <%i++}}%>
+    <%if(locals.edit) {%>
+    <a href="/">Back</a>
+    <form action="/edit/<%=edit.name%>" method="post">
+        <input type="text" name="name" value="<%=edit.name%>"><br>
+        <input type="text" name="email" value="<%=edit.email%>"> <br>
+        <button type="submit">Enregistrer</button>
+    </form>
+    <%}%>
+    <%if(!locals.edit) {%>
+    <form action="/" method="post">
+        <input type="text" name="name"><br>
+        <input type="text" name="email"> <br>
+        <button type="submit">Enregistrer</button>
+        <%if(locals.message) {%>
+        <p style="color:red"> <%=message%></p>
+        <%}%>
+    </form>
+    <%}%>
+
+</body>
+
+</html>

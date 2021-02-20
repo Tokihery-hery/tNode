@@ -1,0 +1,341 @@
+body{
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.container{
+    margin-top: 4px;
+    display: flex;
+    max-width: 2000px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 2px;
+    
+}
+.header{
+    display: flex;
+    border: 1px solid rgb(252, 248, 248);
+
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    max-width: 2000px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 70px;
+    background: rgb(82, 30, 30);
+}
+.header_ami{
+    height: max-content;
+    padding: 12px;
+    background: rgb(92, 158, 84);
+    text-align: center;
+    margin: 3px auto;
+}
+.header h1{
+    margin-left: auto;
+    font-size: 23px;
+    color: rgb(182, 197, 207);
+    padding: 12px;
+    text-align: center;
+}
+  .header img{
+      position: absolute;
+    border-radius: 23px;
+    height: 55px;
+    width: 60px;
+  
+    margin: 7PX 48px;
+  }
+  .error{
+      color:rgb(82, 30, 30);
+      background: rgb(235, 131, 131);
+      padding: 3px;
+      width: auto;
+      height: auto;
+      margin: 0 auto;
+      position:absolute;
+  }
+  
+  .header ul li:hover{
+
+   background: rgb(136, 150, 209);
+  
+  }
+  .search{
+      display: flex;
+      margin: auto;
+  }
+  .header input[type=search]{
+      height: 43px;
+      width: 400px;
+  }
+  .header input[type=button]{
+    height: 43px;
+    max-width: 100px;
+}
+.zone_chat{
+    height: max-content;
+    
+}
+.zone_amitie ul{
+    padding: inherit;
+    margin: 10px 5px;
+}
+.zone_amitie ul li span a{
+    text-decoration: none;
+    padding: 2px;
+    border-radius: 5px;
+    margin: 0 5px;
+    color: #fff;
+    
+}
+.zone_amitie ul li a{
+    text-decoration: rgb(182, 197, 207);
+    color: rgb(136, 150, 209);
+    font-weight: bold;
+}
+
+.ami{
+    background: rgb(252, 248, 248);
+    margin-top: 4px;
+    margin-right:0 ;
+    padding-right:0 ;
+    padding: 4px;
+}
+#zone_chat{
+    margin-right: 16px;
+    height: 1250px;
+    background: rgb(182, 197, 207);
+    overflow: auto;
+}
+.btn-ajouter{
+    height: inherit;
+    background: rgb(92, 158, 84);
+    padding: inherit;
+}
+.input_message{
+    display: flex;
+    position: fixed;
+    margin-bottom: 0;
+    bottom: 10px;
+    width: 60%;
+    margin-left: 12px;
+}
+
+.input_message #message_send{
+   
+    width: 765px;
+    height: 56px;
+}
+.input_message #envoi_message{
+ height: 63px;
+ width: 10%;
+ border-bottom-right-radius: 23px;
+ border-top-right-radius: 23px;
+}
+.pdp_min{
+    height: 63px;
+    widows: 63px;
+    border-radius: 23px;
+}
+.input_message img{
+    border-bottom-left-radius: 23px;
+    border-top-left-radius: 23px;
+    height: 63px;
+    width: 78px;
+}
+ul{
+    list-style: none;
+    display: grid;
+}
+li{
+    position: relative;
+}
+.receive{
+    overflow-wrap: anywhere;
+    height: max-content;
+    padding: 23px;
+    width: max-content;
+    max-width: 700px;
+    margin-bottom: 12px;
+    margin-right: 23px;
+   background: rgb(203, 216, 224);
+   float: left;
+   border-top-right-radius: 23px;
+   border-bottom-right-radius: 23px;
+   border-bottom-left-radius: 23px;
+}
+.sender{
+    overflow-wrap: anywhere;
+    height: max-content;
+    padding: 23px;
+    width: max-content;
+    max-width: 700px;
+    margin-bottom: 12px;
+    margin-right: 23px;
+    background: rgb(92, 158, 84);
+    float: right;  
+    border-top-left-radius: 23px;
+    border-top-right-radius: 23px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 23px;
+    text-align: end;
+ }
+.header_zone_amitie{
+    width: inherit;
+    background: #fff;
+    border-top-left-radius: 23px;
+    border-top-right-radius: 23px;
+    
+}
+.header_zone_amitie ul{
+    position: static;
+    display: flex;
+    margin: 0;
+    padding: 0;
+   
+    
+}
+.header_zone_amitie .nav li{
+    width: 100%;
+    background: rgb(170, 151, 158);
+    padding: 15px;
+    text-align: center;
+    position: relative;
+   
+}
+.header_zone_amitie .nav li span{
+    position: absolute;
+    height: 15px;
+    width: max-content;
+    padding-top: 3px;
+    border-radius: 23px;
+    background: rgb(95, 199, 70);
+    text-align: center;
+    top:11px;
+    right: 56px;
+   
+}
+.header_zone_amitie .nav li:hover{
+    background: rgb(187, 170, 176);
+}
+
+
+ /* css pour loginChat */
+ #page_inscrire{
+     display: none;
+ }
+.zone_amitie{
+    width: auto;
+    height: max-content;
+    background: rgb(82, 30, 30);
+    margin-right: 16px;
+}
+.ami_online{
+    width: auto;
+    height: max-content;
+    background: rgb(114, 175, 63)
+}
+ .card{
+ 
+     border-radius: 23px;
+     margin: 11% auto;
+     height: 500px;
+     max-width: 700px;
+     background: rgb(182, 197, 207);
+     padding: 45px;
+ }
+ h1{
+     text-align: center;
+ }
+ .form{
+ 
+    height: 405px;
+    display: block;
+ }
+ form{
+    margin-top: 34px;
+     display: block !important;
+     margin-left: 34px;
+     margin-right: 34px;
+ }
+ 
+ input{
+     border-radius: 5px;
+     margin-top: 12px;
+     width: 100%;
+     height: 56px;
+     border: none;
+     padding-left: 2px;
+    background: rgb(182, 197, 207);
+
+ }
+ input[type=text]:hover, input[type=password]:hover{
+    background: rgb(255, 255, 255);
+    color: rgb(82, 30, 30);
+    transition: color .8s;
+    box-shadow: rgb(82, 30, 30) 2px 0px 30px;
+ }
+ input[type=checkbox]{
+     height: 34px;
+     /* width: 34px; */
+ }
+ /* input[type=checkbox]:hover{
+    height: 12px;
+    border: 1px solid rgb(211, 86, 134);
+    color: rgb(92, 158, 84);
+
+} */
+#remember_me{
+    display: flex;
+    position: absolute;
+    /* text-align: left; */
+    width: auto;
+}
+.connection{
+    height: max-content;
+    padding-bottom: 4px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    background: rgb(92, 158, 84);
+    font-size: 45px;
+    font-weight: bold;
+    color: rgb(182, 197, 207);
+}
+.connection:hover{
+    color: rgb(92, 158, 84);
+    background: rgb(182, 197, 207);
+    transition: color .7s;
+}
+.login{
+    display: none;
+}
+p{
+    position: relative;
+    display: flex !important;
+}
+a{
+    text-decoration: none;
+}
+span{
+    margin-top: -3px;
+    margin-left: 34px; 
+    float: right;
+}
+.plusoption {
+  text-align: center;
+  align-content: center;
+}
+.pswforget{
+    float: right;
+}
+.inscrire{
+    float: left;
+}
+button{
+    height: max-content;
+    padding: 4px;
+    margin-bottom: 23px;
+}

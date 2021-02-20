@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Edit page</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="/assets/public/js/jquery-3.4.-1.js"></script>
+    <script src="/assets/js/magic.js"></script>
+    
+    <style>
+        legend {
+            text-align: center;
+            padding: 25px;
+        }
+
+        .form,
+        .rows {
+            padding: 24px !important;
+        }
+
+        .container-fluid {
+            display: flex !important;
+            position: absolute !important;
+        }
+
+        .container {
+            position: static !important;
+        }
+
+        .card {
+            width: 50%;
+            margin-right: auto !important;
+            margin-left: auto !important;
+            margin-top: 50px !important;
+        }
+
+        .jumbotron {
+            margin-top: 50px;
+            margin-left: 100px;
+            height: max-content !important;
+            width: max-content !important;
+        }
+
+        .error h1 {
+            background: rgb(216, 124, 101);
+            width: 100%;
+
+            border: 3px solid rgb(238, 11, 11);
+            border-radius: 5px;
+            padding: 14px;
+            margin-top: 5%;
+
+
+        }
+
+        .success h1 {
+            background: rgb(204, 228, 138);
+
+            width: 100%;
+            margin-top: 5%;
+            border-radius: 5px;
+            border: 3px solid rgb(93, 226, 66);
+            padding: 14px;
+        }
+
+        a {
+            list-style: none;
+        }
+        .control{
+            display: flex;
+            align-content: space-between;
+            position: static;
+        }
+        .btn-success{
+            float: right;
+            margin-left: 0;
+            margin-right: auto;
+            left: 0;
+        }
+      .btn-danger{
+        float: left;
+        margin-left: auto;
+        margin-right: 0;
+        right: 0;
+        
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="col-md-6 container">
+        <div class="card a">
+            <span class="success">
+                <% if(locals.succes_edit){%>
+                <h1><%= succes_edit %></h1>
+                <%} %>
+            </span>
+            <span class="error">
+                <% if(locals.error){%>
+                <h1><%= error %></h1>
+                <%} %>
+            </span>
+            <div class="rows">
+                <legend>Editer d'Information</legend>
+            </div>
+            <div class="diviser">
+                <hr>
+            </div>
+            <div class="rows">
+                <span class="error">
+                    <% if(locals.error_destinateur){%>
+                    <h1><%= error_destinateur %></h1>
+                    <%} %>
+                </span>
+                <% if(locals.users_selected){ for(users of users_selected){ %>
+
+                <form action="/update/<%= users.id %>" method="post">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" class="form-control" id="name" value="<%= users.name %>">
+                    <label for="lastname">Lastname:</label>
+                    <input type="text" name="lastname" class="form-control" id="lastname" value="<%= users.lastname %>">
+                    <label for="mail">Your adress mail:</label>
+                    <input type="mail" name="mail" id="mail" class="form-control" value="<%= users.email %>" required>
+                    <hr>
+                    <div class="control">
+                         <input type="submit" class="btn btn-success" value="Enregistrer">
+                         <a href="/"> <input type="button" class="btn btn-danger" value="Annuler"></a>
+                    </div>
+                   
+                    <%} }%>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <metacharset="utf-8" />
+    <title>Chat || <% if(locals.rows) {%>
+        <% for(row of rows){%>
+
+        <%= row.name%>
+        <%} }%></title>
+    <link rel="stylesheet" href="/assets/css/style_chat.css">
+    <style>
+        #zone_chatstrong {
+            color: white;
+            background-color: black;
+            padding: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <script src="/assets/js/jquery-3.4.-1.js"></script>
+    <script src="module/socket.io-client/dist/socket.io.js"></script>
+    <!-- <script src="module/socket.io-client/dist/fafana.avieo.js"></script> -->
+
+    <script>
+        let socket = io()
+        let send = () => {
+            let valeur = document.getElementById('message_send').value
+            socket.emit('chat message sender', valeur);
+        }
+        let receive = (msg) => {
+            let li = document.createElement('li')
+            li.innerHTML = "<img class='pdp_min' src='assets/image/node js.jpg' alt='' srcset=''><h1 class='sender'>" + msg + "</h1>"
+            document.getElementById('message_receive').appendChild(li)
+        }
+        let app = () => {
+            let msg_f = document.getElementById('envoi').value
+            let li = document.createElement('li')
+            li.innerHTML = "<h1 class='receive'>" + msg_f + "</h1>"
+            document.getElementById('message_receive').appendChild(li)
+        }
+        socket.on("chat message receive", receive)
+        for (row of rows) {
+            socket.set("session_user", rows.mail)
+        }
+
+
+    </script>
+    <div class="header">
+        <img src="assets/image/node js.jpg" alt="" srcset="">
+        <h1> <% if(locals.rows) {%>
+            <% for(row of rows){%>
+
+            <%= row.name%> <%= row.lastname%>
+            <%} }%>
+
+        </h1>
+        <h1> <% if(locals.error) {%>
+            <%= error%>
+
+            <% }%>
+
+        </h1>
+        <div class="search">
+
+            <input type="search" name="search" id="search">
+            <input type="button" value="search">
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="zone_amitie">
+            <div class="header_zone_amitie">
+                <ul class="nav">
+
+                    <li><span><% if(locals.retrouveAmis) {%> <%= retrouveAmis.length%> <% }%></span>Friend suggestion
+                    </li>
+                    <li><span>5</span>Message</li>
+                    <li><span>10</span>Chat</li>
+                </ul>
+            </div>
+            <ul>
+                <% if(locals.listAmis) {%>
+                <li class="header_ami"> <span><%= listAmis.length%></span> Votre amis</li>
+                <%for(let ami of listAmis) {%> 
+                <li class="ami"> <a href="message/<%= ami.id%>"><%= ami.name_friend%> </a></li>
+                 <% }}%>
+            </ul>
+            <hr>
+            <ul>
+
+                <% if(locals.retrouveAmis) {%>
+                <li class="header_ami">Suggestion d'amis</li>
+                <% if(locals.id_session) {%>
+                <% for(ami of retrouveAmis){%>
+                <li class="ami" title=""> <a href="/pdp/<%= ami.id%>"> <%= ami.name%> <%= ami.lastname%> </a><span><a
+                            href="/ajouter/<%= id_session%>/<%= ami.id%>/  <%= ami.name%>"
+                            class="btn btn-ajouter">Ajouter</a></span></li>
+                <%} }}%>
+            </ul>
+        </div>
+        <div class="zone_chat">
+            <section id="zone_chat">
+                <ul id="message_receive">
+                    <li>
+                        <h1 class="receive"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur eveniet
+                            illum, eaque asperiore unde.</h1>
+                    </li>
+
+                    <li>
+                        <h1 class="sender"> overflow-wrap: anderit adipisci inventore fugiat commodi doloremque
+                            accusamus dolor sequi quod.</h1>
+                    </li>
+                </ul>
+            </section>
+
+
+            <div class="input_message">
+                <img src="assets/image/node js.jpg" alt="" srcset="">
+                <textarea name="message" id="message_send" placeholder="Votre message..." cols="30"
+                    rows="60"> </textarea>
+                <input type="submit" id="envoi_message" onclick="send()" value="Envoyer" />
+
+            </div>
+        </div>
+        <div class="ami_online">
+            <ul>
+                <li>Lorem ipsum doloelectus.</li>
+                <li>r sit, amet consectetur adipisicing elit. Vitae vel soluta, autem earum sequid</li>
+                <li> vero repellendus consectetur totam praesentium error obcaecati temporibus recusandae sint debitis
+                    officiis aliquid maiores voluptatum </li>
+            </ul>
+        </div>
+        <!-- <textarea name="envoi" id="envoi" cols="30" rows="10"></textarea>
+    <input type="submit" id="" onclick="app()" value="Envoyer" /> -->
+</body>
+
+</html>

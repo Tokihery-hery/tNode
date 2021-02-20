@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue js hello world</title>
+    <style>
+        .container{
+            display: block;
+        }
+    .blog-1{
+        width: 500px;
+        height: max-content;
+        background: rgb(24, 99, 86);
+        margin-left: 400px;
+        margin-right: 400px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+
+
+    }
+    .blog-2{
+        width: 500px;
+        color: #fff;
+        height: max-content;
+        background: rgb(1, 19, 16);
+        margin-left: 400px;
+        margin-right: 400px;
+        
+        
+    }
+    video{
+        width: 500px;
+        height: 282px;
+        background-color: aqua;
+    }
+    .success, .error, .other{
+        width: max-content;
+        height: max-content;
+        border-radius: 7px;
+        padding: 12px;
+    }
+    .success{
+        border: 2px solid rgb(44, 247, 4);
+        background: rgb(128, 155, 101);
+    }
+    .other{
+        border: 2px solid rgb(152, 7, 248);
+        background: rgb(136, 133, 190);
+    }
+    .otherdiff{
+        display: none;
+    }
+    .error{
+        border: 2px solid rgb(233, 9, 9);
+        background: rgb(179, 108, 90);
+
+    }
+    .minuterie{
+        height: max-content;
+        width: max-content;
+        text-align: center;
+        padding-bottom: 7px;
+        padding-left: 7px;
+        padding-right: 7px;
+        border: 2px solid blue;
+    }
+
+    </style>
+</head>
+<body>
+  
+    <div class="container">
+        
+        <div id="app"> 
+    <!-- compenents -->
+   <message type="success" :message='message'></message>
+            <div class="minuterie" v-on="arret()">{{seconds}}</div>
+            <a :href="link" :title="message" >{{message}}</a>
+            <div :lass="cls" >show if success</div>
+            <div :class="success ? 'success' : 'error'">ALERT MODDIFIE</div>
+       <input type="checkbox"  v-model="success">Couche<br>
+        <ul>
+            <li v-for="user in users" v-if="success">{{ user | capitalize }}</li>
+        </ul> 
+        <h1 :class="cls">{{msg_f | capitalize_f}}</h1>
+        <h1 :class="cls">{{msg_s | capitalize_plusparam('Aty aloha', 'aty aoriana')}}</h1>
+        <h1 :class="plus">{{msg_fd}}</h1>
+
+        <input type="text" v-salut.a.b.c="link">
+        <input type="text" v-model="fullmessage"><br>
+        <input type="text"  v-model.lazy="control"><br>
+
+
+        <input type="text" name="msg" id="msg" v-model.lazy="message"><br>
+        <span>{{message}}</span><br>
+        <button @click="close" :class="cls">Close</button>
+        <button @click="addPerson" class="success">Add new person</button>
+
+
+    </div>
+    </div>
+    <script src="/assets/js/vuejs.js"></script>
+    <script src="/assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Parser json</title>
+    <style>
+    .left{
+        text-align: end;
+    }
+    </style>
+</head>
+
+<body ng-app>
+    <input type="text" ng-model="name" >
+    {{name}}
+
+    <% if(locals.averagefoko){ %> <!-- mandray an lay averagefoko nalefa avy any aminy parserjson.js -->
+        
+      <h1>Nombre moyend du fokontany : <%= averagefoko %>  <!-- miaffiche azy --></h1> 
+     
+            <%}%>
+    <% if(locals.data){ %> <!-- mandray an lay datanet nalefa avy any aminy parserjson.js -->
+       
+    <table border="1">
+        <thead>
+            <th>Commune</th>
+            <th>Fonkotany</th>
+            <th>
+                <tr>
+                    <th>Anarana</th>
+                    <th>N°</th>
+                    <th>Anarana</th>
+                </tr>
+
+            </th>
+
+        </thead>
+        <tbody>
+            <%  for(databrute of data) {  %>
+            <tr>
+                <td><%= databrute.name %></td><!-- miaffiche commune  -->
+
+                <%  for(foko of databrute.fokontany) {  %>
+            </tr>
+            <tr>
+                <td>
+                <td><%= foko._id %></td><!-- miaffiche _id fokontany  -->
+                <td class="left"><%= foko.name %></td> <!-- miaffiche anarana ilay fokontany  -->
+                </td>
+            </tr>
+
+
+
+
+            <%}}%>
+        </tbody>
+
+
+    </table>
+
+
+
+
+
+    <%}%>
+
+   
+  </body>
+
+</html>

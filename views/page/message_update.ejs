@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/public/bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/assets/SemanticUI/dist/semantic.min.css">
+    <style>
+        .container{
+            margin:50px 400px ;
+        }
+        .ui.message{
+            bottom: 27px;
+        }
+        .ui.button{
+            margin-top: 18px;
+        }
+        span.message_posted{
+            color:rgb(7, 8, 14) !important;
+        }
+        div.pannel{
+            margin-top: 30px;
+            padding: 2px;
+            display: flex;
+        }
+        a{
+            margin-top: 4px;
+        }
+        .head{
+            padding-bottom: 12px;
+        }
+    </style>
+</head>
+<body> 
+    
+     <div class="container">
+        <% if(locals.messages) { for(message of messages){%>
+        
+            <form action="/update/<%=message.id%>" method="post" class="ui form ">
+            <div class="field">
+                <label for="message">Message</label>
+                <textarea name="message" id="message_id" cols="30" rows="10"><%=message.message%></textarea><br>
+                <!-- <input type="text" name="date" value=" <%=message.date%>"> -->
+                <input type="submit" value="Envoyer" class="ui blue labelled submit icon button">
+            </div>  
+            </form>
+        <% }}%>
+        
+     </div>
+
+   
+    
+
+</body>
+</html>
+

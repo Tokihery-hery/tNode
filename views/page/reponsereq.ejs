@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Rest API CRUD nodejs and mysql</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <script src="/assets/js/jquery-3.4.-1.js"></script>
+    <script src="/assets/js/magic.js"></script>
+
+    <script>
+        $(document).ready(() => {
+            $('#obj_search').keyup(function (e) {
+                e.preventDefault()
+                $("a#search").attr({
+                    href: "/search/" + $('#obj_search').val()
+                })
+            })
+        })
+    </script>
+    <style>
+        legend {
+            text-align: center;
+            padding: 25px;
+        }
+
+        .form,
+        .rows {
+            padding: 24px !important;
+        }
+
+        .container-fluid {
+            display: flex !important;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20%;
+            position: absolute;
+        }
+
+        .card {
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: 50px;
+            position: absolute;
+        }
+
+        .jumbotron {
+            position: static;
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            height: max-content !important;
+            width: max-content !important;
+            display: inline-table;
+        }
+
+        .table {
+
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+        }
+
+        .error h1,
+        .error_search h1 {
+            background: rgb(216, 124, 101);
+            width: 100%;
+
+            border: 3px solid rgb(238, 11, 11);
+            border-radius: 5px;
+            padding: 14px;
+            margin-top: 5%;
+
+
+        }
+
+        .success h1 {
+            background: rgb(204, 228, 138);
+
+            width: 100%;
+            margin-top: 5%;
+            border-radius: 5px;
+            border: 3px solid rgb(93, 226, 66);
+            padding: 14px;
+        }
+
+        a {
+            list-style: none;
+        }
+
+        .timer {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12px;
+            color: rgb(179, 109, 109);
+            margin-right: auto;
+            margin-left: auto;
+            display: ruby;
+        }
+
+        .alert_ifsans_info {
+            position: static;
+            display: none;
+            background: rgb(34, 23, 23);
+            height: max-content;
+            max-width: 600px;
+            padding: 23px;
+            border-radius: 23px 23px 0 23px;
+
+        }
+
+        .alert_ifsans_info h1 {
+            color: rgb(214, 15, 15);
+            text-align: end;
+        }
+
+        .alert {
+            position: absolute;
+            display: none;
+            background: rgb(34, 23, 23);
+            height: max-content;
+            color: #fff;
+            white-space: pre-wrap;
+            max-width: 131px;
+            border-radius: 23px 23px 0 23px;
+            margin-left: -168px;
+            transform: rotate(-29deg)
+        }
+
+        .alert_instant {
+            border: 2px solid rgb(79, 167, 79);
+            color: rgb(93, 226, 66);
+        }
+
+        tr td a {
+            list-style: none;
+            color: inherit;
+        }
+
+        .search_bar {
+            display: flex;
+
+        }
+
+        .btn-search {
+            background: rgb(54, 14, 233);
+            color: rgb(255, 255, 255);
+        }
+
+        .btn-search:hover {
+            color: rgb(54, 14, 233);
+            background: rgb(255, 255, 255);
+            transition: color 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+
+        <div class="col-md-6 jumbotron">
+            <div class="search_bar">
+                <input type="search" name="search" class="form-control" placeholder="Ajouter une mot nom ou id"
+                    id="obj_search">
+                <a class="btn btn-search" href="/" id="search" onclick="getValue()">Karoky</a>
+            </div>
+            <div class="error_search">
+                <% if(locals.error_search){%>
+                <h1><%= error_search %></h1>
+                <a href="/"> <input type="button" class="btn btn-danger" value="Retour à tous liste"></a>
+                <%} %>
+            </div>
+            <span class="success">
+                <% if(locals.succes_edit){%>
+                <h1><%= succes_edit %></h1>
+                <%} %>
+            </span>
+            <span class="success">
+                <% if(locals.len ){ if(len===1){%>
+                <h1>il y a <%= len %> resulat</h1>
+                <%}else{ %>
+                <h1>il y a <%= len %> resulats</h1>
+                <%}} %>
+            </span>
+            <form id="modif_post" action="" method="post">
+            <table class="table">
+                <thead>
+                    <!-- <th>id</th>
+                    <th>Name</th>
+                    <th>Lastname</th>
+                    <th>mail</th>
+                    <th>Action</th> -->
+                </thead> 
+                <tbody>
+                    <span class="alert_ifsans_info">
+                        <h1> Tsy misy ny info , azafady manpidira azafady, eo ankavanana no manpiditra</h1>
+                    </span>
+                    <% if(locals.users_data) for(users of users_data){{ %>
+                    <tr>
+                        <td><a href="/profil/<%= users.id %>"><%= users.id %></a></td>
+                        <td><a href="/profil/<%= users.id %>" class="name_<%= users.id %>"><%= users.name %></a></td>
+                        <td><a href="/profil/<%= users.id %>" class="lastname_<%= users.id %>"><%= users.lastname %></a></td>
+                        <td><a href="/profil/<%= users.id %>" class="mail_<%= users.id %>"><%= users.mail %></a></td>
+
+                        <td>
+                        <td><button  id="<%= users.id %>" class="btn edit_<%= users.id %> btn-success edit">Edit</button> 
+                        </td>
+                        <td><button href="/delete/<%= users.id %>" class="btn btn-danger delete_<%= users.id %>">Delete</a></td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="timers">
+                            <h1 class="timer" id="<%= users.id %>"><%= users.date.fromNow() %></h1>
+                        </td>
+                    </tr>
+                    <%}}%>
+                </tbody>
+            </table>
+        </form>
+        </div>
+        <div class="col-md-6">
+            <div class="card a">
+                <div class="rows">
+                    <legend>Enregistrement d'Information</legend>
+                </div>
+                <div class="diviser">
+                    <hr>
+                </div>
+                <div class="rows">
+                    <form action="/list" method="post">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" class="form-control" id="name">
+                        <label for="lastname">Lastname:</label>
+                        <input type="text" name="lastname" class="form-control" id="lastname">
+                        <label for="mail">Your adress mail:</label>
+                        <input type="mail" name="mail" id="mail" class="form-control">
+                        <hr>
+                        <input type="submit" class="btn btn-success" value="Enregistrer be">
+                        <span class="success">
+                            <% if(locals.succes){%>
+                            <h1><%= succes %></h1>
+                            <%} %>
+                        </span>
+                        <span class="error">
+                            <% if(locals.error){%>
+                            <h1><%= error %></h1>
+                            <%} %>
+                        </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+    <title>Redirection page </title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let socket = io()
+    </script>
+    <style>
+    .blog-1{
+        width: 500px;
+        height: max-content;
+        background: rgb(24, 99, 86);
+        margin-left: 400px;
+        margin-right: 400px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+
+
+    }
+    .blog-2{
+        width: 500px;
+        color: #fff;
+        height: max-content;
+        background: rgb(1, 19, 16);
+        margin-left: 400px;
+        margin-right: 400px;
+        
+        
+    }
+
+    </style>
+</head>
+<body >
+
+    <div class="container">
+       <div class="blog-1">
+           <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio, impedit? Rerum quibusdam alias ducimus possimus molestiae, consectetur autem dolorem fugit ea earum dolorum, laborum blanditiis, atque perspiciatis illum odio vitae!</h1>
+           <div class="blog-2">
+               <form action="/page" method="post">
+                    <input type="submit" value="Page next">
+                </form>
+           </div>
+       </div> 
+       <div class="blog-2">
+           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, rerum voluptas delectus consequatur voluptatibus in nulla reprehenderit neque nostrum, alias quod recusandae omnis corporis amet perferendis optio at tempore maiores.
+
+             </p>
+       </div> 
+    </div>
+ 
+</body>
+</html>

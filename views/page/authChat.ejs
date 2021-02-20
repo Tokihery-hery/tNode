@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription sur cette chat</title>
+
+    <link rel="stylesheet" href="assets/css/style_chat.css">
+    <script src="assets/js/jquery-3.4.-1.js"></script>
+</head>
+<script>
+    let show = ()=>{
+        let show = document.getElementById('page_inscrire');
+        // alert('this is page inscrire')
+    }
+    let inscrire = document.getElementById('login')
+
+    $(document).ready(()=>{
+        $('#inscrire').on("click", ()=>{
+            $('#login').hide('slow')
+            $('#page_inscrire').show('slow')
+        })
+        $('#login_href').on("click", ()=>{
+            $('#login').show('slow')
+            $('#page_inscrire').hide('slow')
+        })
+    })
+
+</script>
+<body>
+    <div class="container">
+        <div class="card" id="login">
+            <div class="form">
+                
+                <form action="/login" method="post">
+                    <h1>Connecté ici</h1>
+                    <% if(locals.error) {%> 
+                       <span class="error"> <%= error%></span>
+                
+                            <% }%>
+                    <input type="mail" name="mail" placeholder="Pseudo ou mail">
+                    <input type="password" name="password" placeholder="Votre mots de pass">
+                   <p>
+                       
+                       <input type="checkbox" id="remember_me" name="remember_me"> <span>Remember me</span> 
+                   </p> 
+                   <hr>
+                    <input type="submit" class="connection" value="Connection">
+                </form>
+            </div>
+            <div class="plusoption">
+              <button class="pswforget">  
+                  <a href="/">Mot de pass oublier</a>
+                </button>
+               <button class="inscrire" id="inscrire" onclick="show()">
+                   Inscription ici
+                </button> 
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+            <div class="card" id="page_inscrire">
+                <div class="form">
+                    
+                    <form action="/inscrire" method="post">
+                        <h1>Inscription ici</h1>
+                        <input type="text" name="name" placeholder="Pseudo">
+                        <input type="email" name="mail" placeholder="Votre mail">
+                           <input type="password" name="password" placeholder="Confirmer Votre mots de pass"> 
+                       
+                       <hr>
+                        <input type="submit" class="connection" value="S'incrire">
+                    </form>
+                </div>
+                <div class="plusoption">
+                   <button class="inscrire" id="login_href">
+                       Déja avoir un compte
+                    </button> 
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
