@@ -1,0 +1,5 @@
+const new_skot = require('./protype')
+let skot = new_skot.clone()
+console.log(skot)
+console.log(skot.name)
+console.log(skot.list)

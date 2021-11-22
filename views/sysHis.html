@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<title>System details</title>
+	<link rel="icon" sizes="16x16" href="icon16.png">
+	<link rel="icon" sizes="24x24" href="icon24.png">
+	<link rel="icon" sizes="32x32" href="icon32.png">
+	<link rel="stylesheet" type="text/css" href="css.css">
+	<style rel="stylesheet" id="sheet">
+		:root {
+			--width:12px;
+			--border-width:1px;
+			--line-height:calc(10 * var(--border-width) + var(--width));
+			--color-bg:black;
+			--color-fg:gray;
+			--barCount:20;
+			--fixedline:3;
+		}
+		fieldset > div.stat {
+			/*width:calc(6 * calc(2 * var(--line-height) + 2 * var(--width) + var(--border-width)) + var(--border-width));*/
+			width: calc(2 * calc(var(--line-height) + var(--width) + var(--border-width)) + var(--barCount) * var(--border-width) + var(--border-width));
+			height:calc(2 * calc(var(--line-height) + var(--width) + var(--border-width)));
+		}
+		fieldset > div.stat > * {
+			float:left;
+		}
+		body {
+			width:auto;
+		}
+		body > div.content > div > fieldset {
+			border:var(--border-width) solid var(--color-fg);
+		}
+		body > div.content > div > fieldset > div > fieldset > legend {
+			margin-left:var(--width);
+		}
+		body > div.content > * {
+			float:left !important;
+			display:inline-block !important;
+			margin:0 var(--width) var(--width) var(--width);
+			margin:var(--width);
+			width:calc(2 * calc(var(--line-height) + var(--width) + var(--border-width)) + var(--barCount) * var(--border-width) + var(--border-width) + 2 * var(--border-width));
+		}
+		div.text {
+			margin:0 var(--width);
+		}
+		.legend {
+			display:inline-block;
+			padding-left:calc(2 * calc(var(--line-height) + var(--width) + var(--border-width)));
+			padding-right:var(--border-width);
+		}
+		.legend > .radio {
+			float:left;
+		}
+		body.popup {
+			width:calc(2 * calc(2 * calc(var(--line-height) + var(--width) + var(--border-width)) + var(--barCount) * var(--border-width) + var(--border-width) + 2 * var(--border-width) + 2 * var(--width)));
+		}
+		.fixed {
+			width:100%;
+			margin:0;
+		}
+		.legend > .radio > div > div {
+			border-left-width: calc(var(--width) + calc(4 * var(--border-width)));
+			margin: calc(var(--border-width));
+		}
+	</style>
+	<script language="javascript" src="assets/js/lib.js"></script>
+	<script language="javascript" src="assets/js/$sys.js"></script>
+	<script language="javascript" src="assets/js/$chart.js"></script>
+	<script language="javascript" src="assets/js/$domMove.js"></script>
+	<script language="javascript" src="assets/js/$$common.js"></script>
+	<script language="javascript" src="assets/js/$popup.js"></script>
+	<script language="javascript" src="assets/js/$$sysHis.js"></script>
+	</head>
+	<body>
+	</body>
+	
+</html>
+	
